@@ -1,4 +1,4 @@
-package src;
+package rip;
 import java.util.*;
 
 public class DeckCreator {

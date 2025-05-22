@@ -1,4 +1,4 @@
-package src;
+package rip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -22,7 +22,6 @@ public class Background {
         nameField.setBackground(new Color(0, 0, 0));
         nameField.setForeground(new Color(0, 250, 26));
         nameField.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-
 
         panel.add(label);
         panel.add(nameField);
