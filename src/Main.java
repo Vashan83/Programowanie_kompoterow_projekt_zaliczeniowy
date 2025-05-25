@@ -10,7 +10,7 @@ public class Main {
         String correctUsername = "Jan";
         String correctPassword = "Kowalski";
 
-        Logowanie logowanie = new Logowanie(correctUsername, correctPassword);
+        LogIn logowanie = new LogIn(correctUsername, correctPassword);
 
         System.out.print("Podaj login: ");
         String userLogin = scanner.nextLine();
