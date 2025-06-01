@@ -1,4 +1,5 @@
 package src;
+package resources;
 
 import java.util.Scanner;
 
