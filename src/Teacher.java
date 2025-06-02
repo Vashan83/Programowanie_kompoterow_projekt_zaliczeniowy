@@ -1,8 +1,5 @@
 import java.util.*;
-<<<<<<< HEAD
-=======
 import java.io.*;
->>>>>>> 795c6f39a82cb80a0d23b8259ec7daf9e8442e8b
 
 public class Teacher {
     private String username;
@@ -23,11 +20,11 @@ public class Teacher {
 
     public void addGrade(StudentManager studentManager, Student student, Integer grade) {
         studentManager.addGrade(student, grade);
-    }
+    }  // dodawanie ocen przez przekazanie zadania do studentManager wraz z oceną 
 
     public void removeGrade(StudentManager studentManager, Student student, Integer grade){
         studentManager.removeGrade(student, grade);
-    }
+    }  // usuwanie oceny przez przekazanie zadania do studentManager wraz z wartością oceny
 
     public void addStudent(Scanner scanner, StudentManager studentManager) {
         System.out.println("Podaj imię ucznia:");

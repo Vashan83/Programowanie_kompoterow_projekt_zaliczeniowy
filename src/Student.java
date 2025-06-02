@@ -37,4 +37,5 @@ public class Student {
     public String toString() {
         return name + " " + surname + " " + grades.toString();
     }
+    //nadpisanie funkcji toString żeby zwracało imię nazwisko i oceny ucznia 
 }
