@@ -5,9 +5,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        
         Scanner scanner = new Scanner(System.in);
 
-        //Logowanie się
+        //Logowanie 
         LogInSystem logowanie = new LogInSystem(); 
         logowanie.authenticate(scanner);
 
