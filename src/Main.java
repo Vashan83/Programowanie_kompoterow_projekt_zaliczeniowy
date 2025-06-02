@@ -11,6 +11,8 @@ public class Main {
         LogInSystem logowanie = new LogInSystem(); 
         logowanie.authenticate(scanner);
 
+        StudentManager studentManager = new StudentManager();
+
         scanner.close();
     }
 }
