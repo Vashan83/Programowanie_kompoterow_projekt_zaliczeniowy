@@ -1,4 +1,4 @@
-package src;
+//package src;
 import java.io.*;
 import java.util.*;
 import java.nio.file.*;
@@ -8,7 +8,8 @@ public class StudentLoader {
         List<Student> students = new ArrayList<>();
 
         try {
-            List<String> lines = Files.readAllLines(Paths.get("C:\\Użytkownicy\\aleks\\Pulpit\\Szkola\\Studia\\Programowanie_komputerow_1\\Programowanie_kompoterow_projekt_zaliczeniowy\\.idea\\resources\\StudentDatabase.csv"));
+            Path path = Paths.get("resources/CSV files/StudentDatabase.csv");
+            List<String> lines = Files.readAllLines(path);
 
             for (String line : lines) {
                 String[] parts = line.split(",");
@@ -17,11 +18,14 @@ public class StudentLoader {
                 String name = parts[0];
                 String surname = parts[1];
 
-                int[] grades = new int[parts.length - 2];
+                
+                //int[] grades = new int[parts.length - 2];
+                ArrayList<Integer> grades = new ArrayList<>();
                 for (int i = 2; i < parts.length; i++) {
-                    grades[i - 2] = Integer.parseInt(parts[i]);
+                    grades.add(Integer.parseInt(parts[i]));
                 }
-
+                
+                
                 Student s = new Student(name, surname, grades);
                 students.add(s);
             }

@@ -1,13 +1,11 @@
-package src;
-
-import java.util.Arrays;
+import java.util.*;
 
 public class Student {
     private String name;
     private String surname;
-    private int[] grades;
+    private ArrayList<Integer> grades;
 
-    public Student(String name, String surname, int[] grades) {
+    public Student(String name, String surname, ArrayList<Integer> grades) {
         this.name = name;
         this.surname = surname;
         this.grades = grades;
@@ -17,10 +15,26 @@ public class Student {
     public  String getName() {
         return name;
     }
-    public  String getSurname() {return surname;}
+    public  String getSurname() {
+        return surname;
+    }
+
+    //nie public/private = mają do niej dostęp wyłącznie klasy w tym samym package
+    void addGrade(Integer grade) {
+        grades.add(grade);
+    }
+
+    void removeGrade(Integer grade) {
+        //usuwa z listy pozycję o wartości grade.
+        if (!grades.remove(Integer.valueOf(grade))) {
+            System.out.println("Uczeń " + this.name + " " + this.surname + " nie ma takiej oceny.");
+        }
+    }
+
+    
 
     @Override
     public String toString() {
-        return name + " " + surname + " " + Arrays.toString(grades);
+        return name + " " + surname + " " + grades.toString();
     }
 }

@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class LogInSystem {
-    private List<User> users = new ArrayList<>();
+    private List<Teacher> teachers = new ArrayList<>();
 
     public LogInSystem() {
         LoadUsersFromFile();
@@ -15,8 +15,8 @@ public class LogInSystem {
         System.out.println("Write password:");
         String password = scanner.nextLine();
 
-        for (User user : users){
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+        for (Teacher teacher : teachers){
+            if (teacher.getUsername().equals(username) && teacher.getPassword().equals(password)) {
                 System.out.println("Pomyślnie zalogowano");
                 return;
             }
@@ -30,7 +30,7 @@ public class LogInSystem {
         try (Scanner fileScanner = new Scanner(file) ){
             while (fileScanner.hasNextLine()) {
                 String[] parts = fileScanner.nextLine().split(",");
-                users.add(new User(parts[0], parts[1]));
+                teachers.add(new Teacher(parts[0], parts[1]));
             }
         } catch (IOException e) {
             System.out.println("Error while reading user file.");
