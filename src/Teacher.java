@@ -20,11 +20,11 @@ public class Teacher {
 
     public void addGrade(StudentManager studentManager, Student student, Integer grade) {
         studentManager.addGrade(student, grade);
-    }
+    }  // dodawanie ocen przez przekazanie zadania do studentManager wraz z oceną 
 
     public void removeGrade(StudentManager studentManager, Student student, Integer grade){
         studentManager.removeGrade(student, grade);
-    }
+    }  // usuwanie oceny przez przekazanie zadania do studentManager wraz z wartością oceny
 
     public void addStudent(Scanner scanner, StudentManager studentManager) {
         System.out.println("Podaj imię ucznia:");
