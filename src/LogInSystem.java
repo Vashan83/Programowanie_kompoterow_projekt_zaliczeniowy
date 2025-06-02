@@ -1,3 +1,5 @@
+package src;
+
 import java.util.*;
 import java.io.*;
 
@@ -5,7 +7,7 @@ public class LogInSystem {
     private List<Teacher> teachers = new ArrayList<>();
 
     public LogInSystem() {
-        LoadUsersFromFile();
+        LoadUsersFromFile(); //-> privte void LoadUsersFromFile()
     }
 
     public void authenticate(Scanner scanner) {

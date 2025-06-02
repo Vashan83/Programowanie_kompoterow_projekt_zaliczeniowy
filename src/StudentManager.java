@@ -1,3 +1,5 @@
+package src;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,7 +30,7 @@ public class StudentManager {
                 
                 
                 Student s = new Student(name, surname, grades);
-                StudentDatabase.add(s);
+                studentDatabase.add(s);
             }
 
         } catch (IOException e) {
@@ -58,12 +60,6 @@ public class StudentManager {
     }
 
     public void viewData() {
-<<<<<<< HEAD
-        for (Student student : ) {
-
-        }
-=======
         //for (int i = 1)
->>>>>>> 795c6f39a82cb80a0d23b8259ec7daf9e8442e8b
     }
 }
