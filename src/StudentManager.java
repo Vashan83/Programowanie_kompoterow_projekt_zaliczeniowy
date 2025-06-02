@@ -28,7 +28,7 @@ public class StudentManager {
                 
                 
                 Student s = new Student(name, surname, grades);
-                StudentDatabase.add(s);
+                studentDatabase.add(s);
             }
 
         } catch (IOException e) {

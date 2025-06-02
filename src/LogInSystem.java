@@ -21,7 +21,7 @@ public class LogInSystem {
                 return;
             }
         }
-        System.out.println("Wpisano niepoprawne dane.");
+        System.out.println("Wpisano niepoprawne dane");
     }
 
     private void LoadUsersFromFile() {

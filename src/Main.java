@@ -1,5 +1,3 @@
-//package src;
-
 import java.util.Scanner;
 
 
@@ -12,7 +10,7 @@ public class Main {
         logowanie.authenticate(scanner);
 
         StudentManager studentManager = new StudentManager();
-
+        
         scanner.close();
     }
 }
