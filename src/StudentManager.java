@@ -1,3 +1,5 @@
+package src;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -58,8 +60,6 @@ public class StudentManager {
     }
 
     public void viewData() {
-        for (Student student : ) {
-
-        }
+        //for (int i = 1)
     }
 }
