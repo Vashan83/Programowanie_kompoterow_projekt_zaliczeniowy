@@ -1,25 +1,30 @@
-//package src;
+package src;
 
 import java.util.*;
 import java.io.*;
 
 public class LogInSystem {
     private List<Teacher> teachers = new ArrayList<>();
+    boolean isLogedIn = false;
 
     public LogInSystem() {
-        LoadUsersFromFile(); //-> privte void LoadUsersFromFile()
+        while(isLogedIn == false) {
+            LoadUsersFromFile(); //-> privte void LoadUsersFromFile()
+        }
     }
 
     public void authenticate(Scanner scanner) {
-        System.out.println("Write login:");
+
+        System.out.println("Podaj login:");
         String username = scanner.nextLine();
 
-        System.out.println("Write password:");
+        System.out.println("Podaj hasło: ");
         String password = scanner.nextLine();
 
         for (Teacher teacher : teachers){
             if (teacher.getUsername().equals(username) && teacher.getPassword().equals(password)) {
                 System.out.println("Pomyślnie zalogowano");
+                isLogedIn = true;
                 return;
             }
         }
