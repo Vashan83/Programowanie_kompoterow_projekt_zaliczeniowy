@@ -32,7 +32,11 @@ public class Teacher {
         System.out.println("Podaj ocenę:");
         String grade = scanner.nextLine();
 
+<<<<<<< HEAD
         studentManager.addGrade(studentName[0], studentName[1], Integer.parseInt(grade));
+=======
+        studentManager.addGrade(studentName[0], studentName[1], Integer.parseInt(grade);
+>>>>>>> 4d0728eff792bedb2591011a7bc8b2a53afd9b23
     }  // dodawanie ocen przez przekazanie zadania do studentManager wraz z oceną 
 
     public void removeGrade(Scanner scanner, StudentManager studentManager){
