@@ -1,14 +1,6 @@
-package src;
+//package src;
 
 import java.util.*;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import java.io.*;
->>>>>>> 795c6f39a82cb80a0d23b8259ec7daf9e8442e8b
-=======
-import java.io.*;
->>>>>>> fa031efcca80ac979c9e5d54f239f6e80ed53eff
 
 public class Teacher {
     private String username;

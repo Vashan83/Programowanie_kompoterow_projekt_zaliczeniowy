@@ -1,4 +1,4 @@
-package src;
+//package src;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -60,6 +60,8 @@ public class StudentManager {
     }
 
     public void viewData() {
-        //for (int i = 1)
+        for (Student student : studentDatabase) {
+            System.out.println(student.toString());
+        }
     }
 }

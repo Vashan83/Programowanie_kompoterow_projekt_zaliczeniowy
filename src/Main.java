@@ -10,6 +10,7 @@ public class Main {
         logowanie.authenticate(scanner);
 
         StudentManager studentManager = new StudentManager();
+        studentManager.viewData();
         
         scanner.close();
 
