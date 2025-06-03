@@ -20,6 +20,9 @@ public class Student {
     public  String getSurname() {
         return surname;
     }
+    public ArrayList<Integer> getGrades() {
+        return grades;
+    }
 
     //nie public/private = mają do niej dostęp wyłącznie klasy w tym samym package
     void addGrade(Integer grade) {
@@ -37,6 +40,6 @@ public class Student {
     //nadpisanie funkcji toString żeby zwracało imię nazwisko i oceny ucznia 
     @Override
     public String toString() {
-        return name + " " + surname + " " + grades.toString();
+        return name + " " + surname + ": " + grades.toString();
     }
 }

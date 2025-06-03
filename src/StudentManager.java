@@ -39,12 +39,28 @@ public class StudentManager {
 
     }
 
-    public void addGrade(Student student, Integer grade) {
-        student.addGrade(grade);
+    public void addGrade(String name, String surname, Integer grade) {
+        for (Student student : studentDatabase){
+            if (student.getName().equals(name) && student.getSurname().equals(surname)){
+                student.addGrade(grade);
+            }
+        }
+        
     }
 
-    public void removeGrade(Student student, Integer grade) {
-        student.removeGrade(grade);
+    public void removeGrade(String name, String surname, Integer gradeValue) {
+        for (Student student : studentDatabase){
+            if (student.getName().equals(name) && student.getSurname().equals(surname)){
+                Iterator<Integer> iterator = student.getGrades().iterator();
+                while (iterator.hasNext()) {
+                    //analogicznie jak poniżej
+                    Integer grade = iterator.next();
+                    if (grade == gradeValue) {
+                        iterator.remove(); // ta metoda usuwa ostatnie iterator.next()
+                    }
+                }
+            }
+        }
     }
 
     public void addStudent(String name, String surname, ArrayList<Integer> grades) {
@@ -52,9 +68,14 @@ public class StudentManager {
         studentDatabase.add(student);
     }
     public void removeStudent(String name, String surname) {
-        for (Student student : studentDatabase) {
+        Iterator<Student> iterator = studentDatabase.iterator();
+        while (iterator.hasNext()) {
+            //WAŻNE ŻEBY ZROZUMIEĆ
+            //nie możemy użyć tutaj pętli for, bo nie można edytować w forze listy
+            //na której działa pętla. Dlatego jesteśmy zmuszeni użyć struktury Iterator
+            Student student = iterator.next();
             if (student.getName().equals(name) && student.getSurname().equals(surname)) {
-                studentDatabase.remove(student);
+                iterator.remove(); // ta metoda usuwa ostatnie iterator.next()
             }
         }
     }
