@@ -1,4 +1,4 @@
-//package src;
+package src;
 
 import java.util.*;
 import java.io.*;
@@ -11,10 +11,10 @@ public class LogInSystem {
     }
 
     public void authenticate(Scanner scanner) {
-        System.out.println("Write login:");
+        System.out.println("Podaj login:");
         String username = scanner.nextLine();
 
-        System.out.println("Write password:");
+        System.out.println("Podaj hasło: ");
         String password = scanner.nextLine();
 
         for (Teacher teacher : teachers){

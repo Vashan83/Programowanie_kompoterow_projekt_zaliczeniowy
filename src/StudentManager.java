@@ -1,5 +1,7 @@
-//package src;
+package src;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,6 +12,7 @@ public class StudentManager {
     ArrayList<Student> studentDatabase = new ArrayList<>();
 
     public StudentManager() {
+        // Wgrywanie danych z pliku
         try {
             Path path = Paths.get("resources/CSV files/StudentDatabase.csv");
             List<String> lines = Files.readAllLines(path);
@@ -21,22 +24,18 @@ public class StudentManager {
                 String name = parts[0];
                 String surname = parts[1];
 
-                
                 //int[] grades = new int[parts.length - 2];
                 ArrayList<Integer> grades = new ArrayList<>();
                 for (int i = 2; i < parts.length; i++) {
                     grades.add(Integer.parseInt(parts[i]));
                 }
-                
-                
+
                 Student s = new Student(name, surname, grades);
                 studentDatabase.add(s);
             }
-
         } catch (IOException e) {
             System.out.println("Błąd przy czytaniu pliku: " + e.getMessage());
         }
-
     }
 
     public void addGrade(String name, String surname, Integer grade) {
@@ -83,6 +82,29 @@ public class StudentManager {
     public void viewData() {
         for (Student student : studentDatabase) {
             System.out.println(student.toString());
+        }
+    }
+
+    public void sortData() {
+        Collections.sort(studentDatabase, Comparator.comparing(Student::getName));
+    }
+
+    public void saveData() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("resources/CSV files/editedStudentDatabase.csv"));
+            for (Student student : studentDatabase) {
+                writer.write(student.getName() + "," + student.getSurname() + ",");
+                // Łączenie ocen w jedną linię z przecinkami
+                List<Integer> grades = student.getGrades();
+                for (Integer grade : grades) {
+                    writer.write("," + grade);  // Przecinek przed każdą oceną
+                }
+
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e){
+            e.printStackTrace();
         }
     }
 }
