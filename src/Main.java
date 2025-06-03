@@ -10,7 +10,11 @@ public class Main {
         logowanie.authenticate(scanner);
 
         StudentManager studentManager = new StudentManager();
+        Teacher irenka = new Teacher("admin", "test");
         studentManager.viewData();
+        irenka.removeStudent(scanner, studentManager);
+        studentManager.viewData();
+        
         
         scanner.close();
 

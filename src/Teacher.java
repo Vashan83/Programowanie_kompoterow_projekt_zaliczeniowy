@@ -19,8 +19,20 @@ public class Teacher {
         return username;
     }
 
-    public void addGrade(StudentManager studentManager, Student student, Integer grade) {
-        studentManager.addGrade(student, grade);
+    private String[] giveStudentName(Scanner scanner) {
+        System.out.println("Podaj imię ucznia:");
+        String name = scanner.nextLine();
+        System.out.println("Podaj nazwisko ucznia:");
+        String surname = scanner.nextLine();
+        return new String[] {name, surname};
+    }
+
+    public void addGrade(Scanner scanner, StudentManager studentManager) {
+        String[] studentName = giveStudentName(scanner);
+        System.out.println("Podaj ocenę:");
+        String grade = scanner.nextLine();
+
+        studentManager.addGrade(studentName[0], studentName[1], Integer.parseInt(grade);
     }  // dodawanie ocen przez przekazanie zadania do studentManager wraz z oceną 
 
     public void removeGrade(StudentManager studentManager, Student student, Integer grade){
@@ -28,27 +40,27 @@ public class Teacher {
     }  // usuwanie oceny przez przekazanie zadania do studentManager wraz z wartością oceny
 
     public void addStudent(Scanner scanner, StudentManager studentManager) {
-        System.out.println("Podaj imię ucznia:");
-        String name = scanner.nextLine();
-        System.out.println("Podaj nazwisko ucznia:");
-        String surname = scanner.nextLine();
-
+        String[] studentName = giveStudentName(scanner);
         System.out.println("Podaj po przecinku oceny:");
         ArrayList<Integer> grades = new ArrayList<>();
         String line = scanner.nextLine();
-        //TO DO: wyjątek jak ktoś poda coś innego niż ocenę
-        for (String grade : line.split(",")) {
-            grades.add(Integer.valueOf(grade));
+        try {
+            for (String grade : line.split(",")) {
+                try {
+                    grades.add(Integer.valueOf(grade));
+                } catch (Exception e) {
+                    System.out.println("Zignorowano niepoprawną ocenę");
+                }
         }
-        studentManager.addStudent(name, surname, grades);
+        } catch (Exception e) {
+            //nie ma ocen, 
+        }
+        
+        studentManager.addStudent(studentName[0], studentName[1], grades);
     }
 
     public void removeStudent(Scanner scanner, StudentManager studentManager) {
-        System.out.println("Podaj imię ucznia:");
-        String name = scanner.nextLine();
-        System.out.println("Podaj nazwisko ucznia:");
-        String surname = scanner.nextLine();
-
-        studentManager.removeStudent(name, surname);
+        String[] studentName = giveStudentName(scanner);
+        studentManager.removeStudent(studentName[0], studentName[1]);
     }
 }

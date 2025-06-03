@@ -37,6 +37,6 @@ public class Student {
     //nadpisanie funkcji toString żeby zwracało imię nazwisko i oceny ucznia 
     @Override
     public String toString() {
-        return name + " " + surname + " " + grades.toString();
+        return name + " " + surname + ": " + grades.toString();
     }
 }
