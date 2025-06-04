@@ -5,16 +5,12 @@ import java.io.*;
 
 public class LogInSystem {
     private List<Teacher> teachers = new ArrayList<>();
-    boolean isLogedIn = false;
 
     public LogInSystem() {
-        while(isLogedIn == false) {
-            LoadUsersFromFile(); //-> privte void LoadUsersFromFile()
-        }
+        LoadUsersFromFile(); //-> privte void LoadUsersFromFile()
     }
 
     public void authenticate(Scanner scanner) {
-
         System.out.println("Podaj login:");
         String username = scanner.nextLine();
 
@@ -24,7 +20,6 @@ public class LogInSystem {
         for (Teacher teacher : teachers){
             if (teacher.getUsername().equals(username) && teacher.getPassword().equals(password)) {
                 System.out.println("Pomyślnie zalogowano");
-                isLogedIn = true;
                 return;
             }
         }
