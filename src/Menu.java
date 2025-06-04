@@ -3,38 +3,33 @@ package src;
 import java.util.Scanner;
 
 public class Menu {
-    private boolean wlaczony = true;
+    private boolean wlaczony = true; // Flaga do utrzymywania pętli działania menu
     private Scanner scan = new Scanner(System.in);
     StudentManager studentManager = new StudentManager();
 
+    // Administrator posiada uprawnienia do edycji danych uczniów (dodawanie/edycja ocen, usuwanie uczniów itp.)
     Teacher irenka = new Teacher("admin", "test");
 
-<<<<<<< HEAD
-    public void menu() {
-
-    }
-
-=======
->>>>>>> 865bc3c60a6912d3407c5228f025371364cd75b5
-    public void wlacz() {
+    public void turnOn() {
         wlaczony = true;
         while (wlaczony) {
-            wyswietlMenu();
-            int opcja = pobierzLiczbeCalkowita();
-            wykonajOpcje(opcja);
+            showMenu(); // Wyświetlamy opcje menu
+            int opcja = getIntegerNumber(); // Pobieramy od użytkownika numer opcji
+            executeOption(opcja); // Przetwarzamy wybór użytkownika
         }
     }
 
-    private void wykonajOpcje(int opcja) {
+    // Metoda wykonuje czynność przypisaną do numeru opcji
+    private void executeOption(int opcja) {
         switch (opcja) {
             case 0:
-                studentManager.viewData();
+                studentManager.viewData(); // Wyświetlenie listy uczniów
                 break;
             case 1:
-                studentManager.sortData();
+                studentManager.sortData(); // Sortowanie uczniów alfabetycznie po imieniu
                 break;
             case 2:
-                irenka.removeGrade(scan, studentManager);
+                irenka.removeGrade(scan, studentManager); // Usuwanie oceny wybranego ucznia
                 break;
             case 3:
                 irenka.addGrade(scan, studentManager);
@@ -53,23 +48,26 @@ public class Menu {
                 System.out.println(" --- KONIEC ---");
                 break;
             default:
+                // Obsługa nieprawidłowego wyboru
                 System.out.println("Opcja " + opcja + " jest niedostępna. Wybierz opcję z menu.");
         }
-
     }
 
-    private int pobierzLiczbeCalkowita() {
+    // Metoda do bezpiecznego pobrania liczby całkowitej od użytkownika
+    private int getIntegerNumber() {
         String opcjaString = scan.nextLine();
         try {
             int opcjaInt = Integer.parseInt(opcjaString);
             return opcjaInt;
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
+            // W przypadku błędu użytkownik jest informowany i proszony o ponowny wybór
             System.out.println(opcjaString + " nie jest liczbą. Podaj liczbę całkowitą");
-            return pobierzLiczbeCalkowita();
+            return getIntegerNumber(); // Rekurencyjne wywołanie do skutku
         }
     }
 
-    private void wyswietlMenu() {
+    // Buduje i wyświetla menu główne programu
+    private void showMenu() {
         StringBuilder builder = new StringBuilder();
         builder.append("Co chcesz zrobić? Wybierz opcję:\n");
         builder.append("\t(0) Wyświetl spis uczniów\n");

@@ -9,34 +9,39 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class StudentManager {
-    ArrayList<Student> studentDatabase = new ArrayList<>();
+    ArrayList<Student> studentDatabase = new ArrayList<>(); // Lista przechowująca wszystkich uczniów
 
+    // ===== Konstruktor =====
+
+    /**
+     * Konstruktor wczytujący dane z pliku CSV znajdującego się w folderze resources/CSV files/.
+     * Format pliku: imię,nazwisko,ocena1,ocena2,...
+     */
     public StudentManager() {
-        // Wgrywanie danych z pliku
         try {
-            Path path = Paths.get("resources/CSV files/StudentDatabase.csv");
-            List<String> lines = Files.readAllLines(path);
+            Path path = Paths.get("resources/StudentDatabase.csv");
+            List<String> lines = Files.readAllLines(path); // Wczytanie wszystkich linii z pliku
 
             for (String line : lines) {
-                String[] parts = line.split(",");
+                String[] parts = line.split(","); // Rozdzielenie danych po przecinku
 
-                // Zakładamy: parts[0] = imię, parts[1] = nazwisko, reszta to oceny
                 String name = parts[0];
                 String surname = parts[1];
 
-                //int[] grades = new int[parts.length - 2];
                 ArrayList<Integer> grades = new ArrayList<>();
                 for (int i = 2; i < parts.length; i++) {
-                    grades.add(Integer.parseInt(parts[i]));
+                    grades.add(Integer.parseInt(parts[i])); // Parsowanie ocen do Integer
                 }
 
                 Student s = new Student(name, surname, grades);
-                studentDatabase.add(s);
+                studentDatabase.add(s); // Dodanie ucznia do bazy danych
             }
         } catch (IOException e) {
             System.out.println("Błąd przy czytaniu pliku: " + e.getMessage());
         }
     }
+
+    // ===== Dodawanie ocen =====
 
     public void addGrade(String name, String surname, Integer grade) {
         for (Student student : studentDatabase){
@@ -44,40 +49,52 @@ public class StudentManager {
                 student.addGrade(grade);
             }
         }
-        
     }
 
+    // ===== Usuwanie konkretnej oceny =====
+
+    /**
+     * Usuwa pierwszą napotkaną ocenę o danej wartości u konkretnego ucznia.
+     */
     public void removeGrade(String name, String surname, Integer gradeValue) {
         for (Student student : studentDatabase){
             if (student.getName().equals(name) && student.getSurname().equals(surname)){
                 Iterator<Integer> iterator = student.getGrades().iterator();
+
                 while (iterator.hasNext()) {
-                    //analogicznie jak poniżej
                     Integer grade = iterator.next();
-                    if (grade == gradeValue) {
-                        iterator.remove(); // ta metoda usuwa ostatnie iterator.next()
+                    if (grade.equals(gradeValue)) {
+                        iterator.remove(); // Usunięcie bieżącego elementu przez iterator
+                        break; // Usuwamy tylko jedną ocenę
                     }
                 }
             }
         }
     }
 
+    // ===== Dodawanie i usuwanie uczniów =====
+
     public void addStudent(String name, String surname, ArrayList<Integer> grades) {
         Student student = new Student(name, surname, grades);
         studentDatabase.add(student);
     }
+
+    /**
+     * Usuwa ucznia z bazy danych na podstawie imienia i nazwiska.
+     * Używamy Iteratora, ponieważ modyfikujemy listę w trakcie iteracji.
+     */
     public void removeStudent(String name, String surname) {
         Iterator<Student> iterator = studentDatabase.iterator();
         while (iterator.hasNext()) {
-            //WAŻNE ŻEBY ZROZUMIEĆ
-            //nie możemy użyć tutaj pętli for, bo nie można edytować w forze listy
-            //na której działa pętla. Dlatego jesteśmy zmuszeni użyć struktury Iterator
             Student student = iterator.next();
             if (student.getName().equals(name) && student.getSurname().equals(surname)) {
-                iterator.remove(); // ta metoda usuwa ostatnie iterator.next()
+                iterator.remove(); // Usunięcie bieżącego elementu przez iterator
+                break; // Zakładamy, że imię+nazwisko są unikalne
             }
         }
     }
+
+    // ===== Wyświetlanie danych =====
 
     public void viewData() {
         for (Student student : studentDatabase) {
@@ -85,26 +102,28 @@ public class StudentManager {
         }
     }
 
+    // ===== Sortowanie danych =====
+
     public void sortData() {
         Collections.sort(studentDatabase, Comparator.comparing(Student::getName));
     }
 
+    // ===== Zapisywanie danych =====
+
     public void saveData() {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("resources/CSV files/editedStudentDatabase.csv"));
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("resources/editedStudentDatabase.csv"))) {
             for (Student student : studentDatabase) {
-                writer.write(student.getName() + "," + student.getSurname() + ",");
-                // Łączenie ocen w jedną linię z przecinkami
-                List<Integer> grades = student.getGrades();
-                for (Integer grade : grades) {
-                    writer.write("," + grade);  // Przecinek przed każdą oceną
+                writer.write(student.getName() + "," + student.getSurname());
+
+                for (Integer grade : student.getGrades()) {
+                    writer.write("," + grade); // Dodanie każdej oceny z przecinkiem
                 }
 
-                writer.newLine();
+                writer.newLine(); // Nowa linia dla nowego ucznia
             }
-            writer.close();
         } catch (IOException e){
-            e.printStackTrace();
+            System.out.println("Błąd przy zapisie pliku:");
+            e.printStackTrace(); // Wypisanie błędu zapisu
         }
     }
 }
