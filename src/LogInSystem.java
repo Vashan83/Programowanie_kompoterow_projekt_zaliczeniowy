@@ -18,7 +18,7 @@ public class LogInSystem {
      * Autoryzuje użytkownika na podstawie loginu i hasła.
      * Pobiera dane z konsoli, a następnie sprawdza je względem listy nauczycieli.
      */
-    public void authenticate(Scanner scanner) {
+    public boolean authenticate(Scanner scanner) {
         System.out.println("Podaj login:");
         String username = scanner.nextLine();
 
@@ -28,11 +28,12 @@ public class LogInSystem {
         for (Teacher teacher : teachers) {
             if (teacher.getUsername().equals(username) && teacher.getPassword().equals(password)) {
                 System.out.println("Pomyślnie zalogowano");
-                return;
+                return true;
             }
         }
 
         System.out.println("Wpisano niepoprawne dane");
+        return false;
     }
 
     /**
