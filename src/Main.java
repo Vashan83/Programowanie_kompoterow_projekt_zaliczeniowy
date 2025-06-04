@@ -9,13 +9,15 @@ public class Main {
 
         // Inicjalizacja systemu logowania i rozpoczęcie autoryzacji użytkownika
         LogInSystem logowanie = new LogInSystem();
-        logowanie.authenticate(scanner);
+        if (logowanie.authenticate(scanner)) {
+            // Po zalogowaniu uruchamiamy główne menu aplikacji
+            Menu menu = new Menu();
+            menu.turnOn();
 
-        // Po zalogowaniu uruchamiamy główne menu aplikacji
-        Menu menu = new Menu();
-        menu.turnOn();
+            scanner.close(); // Zamykamy skaner po zakończeniu działania programu
+        }
 
-        scanner.close(); // Zamykamy skaner po zakończeniu działania programu
+        
 
         // Rejestrujemy czas zakończenia działania programu
         ProgramRuntime.endTime = System.nanoTime();
