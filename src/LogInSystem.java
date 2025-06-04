@@ -14,7 +14,10 @@ public class LogInSystem {
     }
 
     public void authenticate(Scanner scanner) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 865bc3c60a6912d3407c5228f025371364cd75b5
         System.out.println("Podaj login:");
         String username = scanner.nextLine();
 

@@ -9,10 +9,13 @@ public class Menu {
 
     Teacher irenka = new Teacher("admin", "test");
 
+<<<<<<< HEAD
     public void menu() {
 
     }
 
+=======
+>>>>>>> 865bc3c60a6912d3407c5228f025371364cd75b5
     public void wlacz() {
         wlaczony = true;
         while (wlaczony) {
