@@ -13,7 +13,7 @@ public class Main {
 
         // Po zalogowaniu uruchamiamy główne menu aplikacji
         Menu menu = new Menu();
-        menu.wlacz();
+        menu.turnOn();
 
         scanner.close(); // Zamykamy skaner po zakończeniu działania programu
 

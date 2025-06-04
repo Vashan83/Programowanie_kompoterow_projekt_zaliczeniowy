@@ -10,24 +10,17 @@ public class Menu {
     // Administrator posiada uprawnienia do edycji danych uczniów (dodawanie/edycja ocen, usuwanie uczniów itp.)
     Teacher irenka = new Teacher("admin", "test");
 
-<<<<<<< HEAD
-    public void menu() {
-
-    }
-
-=======
->>>>>>> 865bc3c60a6912d3407c5228f025371364cd75b5
-    public void wlacz() {
+    public void turnOn() {
         wlaczony = true;
         while (wlaczony) {
-            wyswietlMenu(); // Wyświetlamy opcje menu
-            int opcja = pobierzLiczbeCalkowita(); // Pobieramy od użytkownika numer opcji
-            wykonajOpcje(opcja); // Przetwarzamy wybór użytkownika
+            showMenu(); // Wyświetlamy opcje menu
+            int opcja = getIntegerNumber(); // Pobieramy od użytkownika numer opcji
+            executeOption(opcja); // Przetwarzamy wybór użytkownika
         }
     }
 
     // Metoda wykonuje czynność przypisaną do numeru opcji
-    private void wykonajOpcje(int opcja) {
+    private void executeOption(int opcja) {
         switch (opcja) {
             case 0:
                 studentManager.viewData(); // Wyświetlenie listy uczniów
@@ -61,7 +54,7 @@ public class Menu {
     }
 
     // Metoda do bezpiecznego pobrania liczby całkowitej od użytkownika
-    private int pobierzLiczbeCalkowita() {
+    private int getIntegerNumber() {
         String opcjaString = scan.nextLine();
         try {
             int opcjaInt = Integer.parseInt(opcjaString);
@@ -69,12 +62,12 @@ public class Menu {
         } catch (NumberFormatException e) {
             // W przypadku błędu użytkownik jest informowany i proszony o ponowny wybór
             System.out.println(opcjaString + " nie jest liczbą. Podaj liczbę całkowitą");
-            return pobierzLiczbeCalkowita(); // Rekurencyjne wywołanie do skutku
+            return getIntegerNumber(); // Rekurencyjne wywołanie do skutku
         }
     }
 
     // Buduje i wyświetla menu główne programu
-    private void wyswietlMenu() {
+    private void showMenu() {
         StringBuilder builder = new StringBuilder();
         builder.append("Co chcesz zrobić? Wybierz opcję:\n");
         builder.append("\t(0) Wyświetl spis uczniów\n");
