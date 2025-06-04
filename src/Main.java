@@ -3,17 +3,22 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ProgramRuntime.startTime = System.nanoTime(); // Pobieramy czas rozpoczęcia w nanosekundach
+        // Rejestrujemy czas rozpoczęcia działania programu (w nanosekundach) – wykorzystywane do pomiaru czasu trwania działania całej aplikacji
+        ProgramRuntime.startTime = System.nanoTime();
         Scanner scanner = new Scanner(System.in);
 
-        //Logowanie 
-        LogInSystem logowanie = new LogInSystem(); 
+        // Inicjalizacja systemu logowania i rozpoczęcie autoryzacji użytkownika
+        LogInSystem logowanie = new LogInSystem();
         logowanie.authenticate(scanner);
+
+        // Po zalogowaniu uruchamiamy główne menu aplikacji
         Menu menu = new Menu();
         menu.wlacz();
-        
-        scanner.close();
-        ProgramRuntime.endTime = System.nanoTime(); // Pobieramy czas zakończenia w nanosekundach
-        ProgramRuntime.printRuntimeDuration();
+
+        scanner.close(); // Zamykamy skaner po zakończeniu działania programu
+
+        // Rejestrujemy czas zakończenia działania programu
+        ProgramRuntime.endTime = System.nanoTime();
+        ProgramRuntime.printRuntimeDuration(); // Wyświetlamy czas działania programu
     }
 }

@@ -29,7 +29,7 @@ public class LogInSystem {
     //prosimy użytkownika o wpisanie nazwy i hasła i prównujemy czy znadują się takie na naszej liście z pliku *LoadUsersFromFile();*
 
     private void LoadUsersFromFile() {
-        File file = new File("resources/CSV files/UserDatabase.csv");
+        File file = new File("resources/UserDatabase.csv");
 
         try (Scanner fileScanner = new Scanner(file) ){
             while (fileScanner.hasNextLine()) {
