@@ -6,24 +6,17 @@ public class Teacher {
     private String username;
     private String password;
 
-    /**
-     * Konstruktor nauczyciela z loginem i hasłem.
-     */
+    // Konstruktor inicjalizujący nauczyciela z loginem i hasłem
     public Teacher(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    /**
-     * Zwraca hasło nauczyciela.
-     */
+    // Gettery
     public String getPassword() {
         return password;
     }
 
-    /**
-     * Zwraca login (nazwę użytkownika) nauczyciela.
-     */
     public String getUsername() {
         return username;
     }
@@ -48,19 +41,32 @@ public class Teacher {
         System.out.println("Podaj ocenę:");
         String grade = scanner.nextLine();
 
-        // UWAGA: Ocena jest dodawana dwukrotnie – prawdopodobnie błąd
-        studentManager.addGrade(studentName[0], studentName[1], Integer.parseInt(grade));
-        studentManager.addGrade(studentName[0], studentName[1], Integer.parseInt(grade));
+        try {
+            studentManager.addGrade(studentName[0], studentName[1], Integer.parseInt(grade));
+            System.out.println("Ocena została dodana.");
+        } catch (NoSuchElementException e) {
+            System.out.println("Błąd: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Podana ocena nie jest liczbą całkowitą.");
+        }
     }
 
     /**
-     * Usuwa ocenę ucznia. Wymaga podania danych ucznia i konkretnej oceny do usunięcia.
+     * Usuwa pierwszą instancję podanej oceny. Wymaga podania danych ucznia i konkretnej oceny do usunięcia.
      */
     public void removeGrade(Scanner scanner, StudentManager studentManager){
         String[] studentName = giveStudentName(scanner);
         System.out.println("Podaj ocenę do usunięcia:");
         String grade = scanner.nextLine();
-        studentManager.removeGrade(studentName[0], studentName[1], Integer.valueOf(grade));
+
+        try {
+            int parsedGrade = Integer.parseInt(grade); // Zmiana wczytanej liczby w typie String na typ int
+            studentManager.removeGrade(studentName[0], studentName[1], parsedGrade);
+        } catch (NumberFormatException e) {
+            System.out.println("Błąd: Podana wartość nie jest liczbą całkowitą.");
+        } catch (NoSuchElementException e) {
+            System.out.println("Błąd: " + e.getMessage());
+        }
     }
 
     /**
@@ -92,6 +98,19 @@ public class Teacher {
      */
     public void removeStudent(Scanner scanner, StudentManager studentManager) {
         String[] studentName = giveStudentName(scanner);
-        studentManager.removeStudent(studentName[0], studentName[1]);
+
+        boolean studentFound = false;
+        for (Student student : studentManager.studentDatabase) {
+            if (student.getName().equals(studentName[0]) && student.getSurname().equals(studentName[1])) { //Jeżeli znaleźliśmy ucznia
+                studentFound = true;
+                break; // Zakończ szukanie
+            }
+        }
+        if (studentFound) {
+            studentManager.removeStudent(studentName[0], studentName[1]);
+        }else{
+            System.out.println("Brak ucznia w bazie.");
+        }
+
     }
 }

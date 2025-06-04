@@ -57,8 +57,12 @@ public class StudentManager {
      * Usuwa pierwszą napotkaną ocenę o danej wartości u konkretnego ucznia.
      */
     public void removeGrade(String name, String surname, Integer gradeValue) {
+        boolean studentFound = false;
+        boolean gradeFound = false;
+
         for (Student student : studentDatabase){
             if (student.getName().equals(name) && student.getSurname().equals(surname)){
+                studentFound = true;
                 Iterator<Integer> iterator = student.getGrades().iterator();
 
                 while (iterator.hasNext()) {
@@ -68,7 +72,13 @@ public class StudentManager {
                         break; // Usuwamy tylko jedną ocenę
                     }
                 }
+                break; // po znalezieniu ucznia nie kontynuujemy pętli
             }
+        }
+        if (!studentFound) {
+            throw new NoSuchElementException("Nie znaleziono ucznia o podanym imieniu i nazwisku!");
+        } else if (!gradeFound) {
+            throw new NoSuchElementException("Uczeń nie ma podanej oceny do usunięcia!");
         }
     }
 

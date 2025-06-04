@@ -8,7 +8,7 @@ public class Menu {
     StudentManager studentManager = new StudentManager();
 
     // Administrator posiada uprawnienia do edycji danych uczniów (dodawanie/edycja ocen, usuwanie uczniów itp.)
-    Teacher irenka = new Teacher("admin", "test");
+    Teacher administrator = new Teacher("", "");
 
     public void turnOn() {
         wlaczony = true;
@@ -23,22 +23,22 @@ public class Menu {
     private void executeOption(int opcja) {
         switch (opcja) {
             case 0:
-                studentManager.viewData(); // Wyświetlenie listy uczniów
+                studentManager.viewData();
                 break;
             case 1:
-                studentManager.sortData(); // Sortowanie uczniów alfabetycznie po imieniu
+                studentManager.sortData();
                 break;
             case 2:
-                irenka.removeGrade(scan, studentManager); // Usuwanie oceny wybranego ucznia
+                administrator.removeGrade(scan, studentManager);
                 break;
             case 3:
-                irenka.addGrade(scan, studentManager);
+                administrator.addGrade(scan, studentManager);
                 break;
             case 4:
-                irenka.removeStudent(scan, studentManager);
+                administrator.removeStudent(scan, studentManager);
                 break;
             case 5:
-                irenka.addStudent(scan, studentManager);
+                administrator.addStudent(scan, studentManager);
                 break;
             case 6:
                 studentManager.saveData();
@@ -48,7 +48,6 @@ public class Menu {
                 System.out.println(" --- KONIEC ---");
                 break;
             default:
-                // Obsługa nieprawidłowego wyboru
                 System.out.println("Opcja " + opcja + " jest niedostępna. Wybierz opcję z menu.");
         }
     }

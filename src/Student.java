@@ -4,9 +4,9 @@ import java.util.*;
 
 // Klasa reprezentująca pojedynczego ucznia z imieniem, nazwiskiem i listą ocen
 public class Student {
-    private String name;                    // Imię ucznia
-    private String surname;                 // Nazwisko ucznia
-    private ArrayList<Integer> grades;      // Lista ocen ucznia (przechowywane jako liczby całkowite)
+    private String name;
+    private String surname;
+    private ArrayList<Integer> grades;
 
     // Konstruktor inicjalizujący wszystkie pola ucznia
     public Student(String name, String surname, ArrayList<Integer> grades) {
@@ -15,21 +15,18 @@ public class Student {
         this.grades = grades;
     }
 
-    // ===== Gettery =====
-
+    // Gettery
     public String getName() {
-        return name; // Zwraca imię ucznia
+        return name;
     }
 
     public String getSurname() {
-        return surname; // Zwraca nazwisko ucznia
+        return surname;
     }
 
     public ArrayList<Integer> getGrades() {
-        return grades; // Zwraca listę ocen ucznia
+        return grades;
     }
-
-    // ===== Metoda do dodawania ocen =====
 
     /**
      * Dodaje nową ocenę do listy ocen ucznia.
@@ -39,9 +36,8 @@ public class Student {
         grades.add(grade);
     }
 
-    // ===== Nadpisanie metody toString =====
-
     /**
+     * Nadpisanie metody toString
      * Zwraca reprezentację tekstową obiektu ucznia – imię, nazwisko oraz jego oceny.
      * To ułatwia debugowanie oraz wyświetlanie danych ucznia np. w konsoli.
      */
