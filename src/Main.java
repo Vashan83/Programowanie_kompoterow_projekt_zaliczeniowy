@@ -13,11 +13,8 @@ public class Main {
             // Po zalogowaniu uruchamiamy główne menu aplikacji
             Menu menu = new Menu();
             menu.turnOn();
-
-            scanner.close(); // Zamykamy skaner po zakończeniu działania programu
         }
-
-        
+        scanner.close(); // Zamykamy skaner po zakończeniu działania programu        
 
         // Rejestrujemy czas zakończenia działania programu
         ProgramRuntime.endTime = System.nanoTime();
